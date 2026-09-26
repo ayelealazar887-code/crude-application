@@ -23,7 +23,7 @@ function ProductTable({ products, selectedIds, onToggleOne, onToggleAll, onEdit,
 
 	return (
 		<>
-			<div className="divide-y divide-slate-100 md:hidden">
+			<div className="divide-y divide-slate-100 xl:hidden">
 				{products.map((product) => {
 					const status = product.stock === 0 ? 'Out of stock' : product.stock <= 10 ? 'Low stock' : 'In stock'
 					const statusColor = product.stock === 0 ? 'bg-rose-50 text-rose-700' : product.stock <= 10 ? 'bg-amber-50 text-amber-700' : 'bg-emerald-50 text-emerald-700'
@@ -49,8 +49,8 @@ function ProductTable({ products, selectedIds, onToggleOne, onToggleAll, onEdit,
 					)
 				})}
 			</div>
-			<div className="hidden overflow-x-auto md:block">
-				<table className="w-full min-w-[760px] border-collapse text-left">
+			<div className="hidden xl:block">
+				<table className="w-full min-w-190 border-collapse text-left">
 				<thead>
 					<tr className="border-b border-slate-100 bg-slate-50/70 text-[11px] font-semibold uppercase tracking-[0.11em] text-slate-400">
 						<th className="w-12 px-6 py-4">

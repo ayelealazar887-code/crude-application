@@ -5,7 +5,7 @@ type TopbarProps = {
 
 function Topbar({ isDark, onToggleTheme }: TopbarProps) {
 	return (
-		<header className="flex items-center justify-between gap-2 border-b border-slate-200 bg-white px-3 py-3 min-[400px]:px-4 sm:px-8 sm:py-4 lg:px-10">
+		<header className="flex shrink-0 items-center justify-between gap-2 border-b border-slate-200 bg-white px-3 py-3 min-[400px]:px-4 sm:px-8 sm:py-4 lg:px-10">
 			<div className="min-w-0">
 				<p className="text-xs font-medium text-slate-400"><span className="hidden sm:inline">Workspace&nbsp; / &nbsp;</span>Inventory</p>
 				<h1 className="mt-1 truncate text-base font-bold tracking-tight text-slate-900 min-[400px]:text-lg sm:text-xl">Product management</h1>

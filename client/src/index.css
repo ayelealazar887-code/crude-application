@@ -58,6 +58,32 @@ button:disabled {
 	box-shadow: 0 0 0 4px #eef2ff;
 }
 
+.logout-side-panel {
+	animation: sidebar-slide-in 220ms ease-out both;
+}
+
+.mobile-drawer-panel {
+	animation: mobile-drawer-in 220ms ease-out both;
+}
+
+@keyframes mobile-drawer-in {
+	from {
+		transform: translateX(-100%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes sidebar-slide-in {
+	from {
+		transform: translateX(100%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
 html,
 body,
 #root {
