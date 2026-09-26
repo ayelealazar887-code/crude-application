@@ -179,7 +179,7 @@ function App() {
 
   return (
     <div id="top" data-theme={isDark ? 'dark' : 'light'} className="flex h-dvh flex-col overflow-hidden bg-[#f7f8fc] text-slate-800 transition-colors duration-200 lg:flex-row">
-      <Sidebar />
+      <Sidebar onLogout={() => setToast('Sign out is unavailable because no account session is connected.')} />
       <div className="flex min-h-0 min-w-0 flex-1 flex-col lg:ml-64 lg:h-dvh">
         <Topbar isDark={isDark} onToggleTheme={() => setIsDark((current) => !current)} />
         <main id="products" className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
