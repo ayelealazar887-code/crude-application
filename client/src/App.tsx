@@ -178,11 +178,12 @@ function App() {
   }
 
   return (
-    <div id="top" data-theme={isDark ? 'dark' : 'light'} className="min-h-screen bg-[#f7f8fc] text-slate-800 transition-colors duration-200 lg:flex">
+    <div id="top" data-theme={isDark ? 'dark' : 'light'} className="flex h-dvh flex-col overflow-hidden bg-[#f7f8fc] text-slate-800 transition-colors duration-200 lg:flex-row">
       <Sidebar />
-      <div className="min-w-0 flex-1">
+      <div className="flex min-h-0 min-w-0 flex-1 flex-col lg:ml-64 lg:h-dvh">
         <Topbar isDark={isDark} onToggleTheme={() => setIsDark((current) => !current)} />
-        <main id="products" className="mx-auto w-full max-w-[1500px] px-3 py-5 min-[400px]:px-4 sm:px-6 sm:py-8 lg:px-10">
+        <main id="products" className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+          <div className="mx-auto w-full max-w-375 px-3 py-5 min-[400px]:px-4 sm:px-6 sm:py-8 lg:px-10">
           <div className="mb-5 flex flex-col justify-between gap-3 sm:mb-6 sm:flex-row sm:items-end">
             <div>
               <p className="mb-1 text-sm font-medium text-indigo-600">Your store at a glance</p>
@@ -216,6 +217,7 @@ function App() {
             <Pagination page={page} pageCount={pageCount} totalItems={filteredProducts.length} pageSize={pageSize} onPageChange={setPage} />
           </section>
           <p className="py-5 text-center text-xs text-slate-400">Stockwise inventory · Your data is saved on this device</p>
+          </div>
         </main>
       </div>
 
@@ -240,7 +242,7 @@ function App() {
         </div>
       )}
 
-      {toast && <div role="status" className="fixed bottom-5 right-5 z-[60] flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white shadow-lg"><span className="grid h-5 w-5 place-items-center rounded-full bg-emerald-500"><svg viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5"><path d="m5 10 3.2 3.2L15 6.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span>{toast}</div>}
+      {toast && <div role="status" className="fixed bottom-5 right-5 z-60 flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white shadow-lg"><span className="grid h-5 w-5 place-items-center rounded-full bg-emerald-500"><svg viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5"><path d="m5 10 3.2 3.2L15 6.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg></span>{toast}</div>}
     </div>
   )
 }
