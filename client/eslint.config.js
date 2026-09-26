@@ -15,7 +15,7 @@ export default defineConfig([
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
     ],
-    rules: [importScripts],
+    rules: {},
     languageOptions: {
       globals: globals.browser,
     },
