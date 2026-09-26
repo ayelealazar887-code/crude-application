@@ -1,8 +1,13 @@
+import { useState } from 'react'
+
 type SidebarProps = {
 	onLogout: () => void
 }
 
 function Sidebar({ onLogout }: SidebarProps) {
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+	const closeMobileMenu = () => setIsMobileMenuOpen(false)
+
 	return (
 		<aside className="flex w-full min-w-0 shrink-0 flex-col border-b border-slate-200 bg-white px-3 py-3 min-[400px]:px-4 sm:py-4 lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:h-dvh lg:w-64 lg:overflow-hidden lg:border-b-0 lg:border-r lg:px-5 lg:py-7">
 			<div className="flex items-center justify-between gap-2">
@@ -10,16 +15,21 @@ function Sidebar({ onLogout }: SidebarProps) {
 					<span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-indigo-600 text-white shadow-md shadow-indigo-200"><svg viewBox="0 0 24 24" fill="none" className="h-5 w-5"><path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" /><path d="m4.5 7.8 7.5 4.3 7.5-4.3M12 12v8.5" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" /></svg></span>
 					<span className="min-w-0"><span className="block text-[17px] font-bold tracking-tight text-slate-900">Stockwise</span><span className="block text-[11px] font-medium tracking-wide text-slate-400">INVENTORY MANAGER</span></span>
 				</a>
-				<button type="button" onClick={onLogout} className="inline-flex h-10 shrink-0 items-center gap-2 rounded-lg px-2.5 text-xs font-semibold text-slate-500 transition hover:bg-rose-50 hover:text-rose-600 focus-visible:outline-2 focus-visible:outline-indigo-500 lg:hidden" aria-label="Sign out">
-					<svg viewBox="0 0 20 20" fill="none" className="h-4 w-4"><path d="M8 3.5H4.5a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1H8m4-3 3.5-3.5L12 6.5m3.5 3.5H7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-					<span>Sign out</span>
-				</button>
+				<div className="flex shrink-0 items-center gap-1 lg:hidden">
+					<button type="button" aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'} aria-expanded={isMobileMenuOpen} aria-controls="mobile-navigation" onClick={() => setIsMobileMenuOpen((open) => !open)} className="grid h-10 w-10 place-items-center rounded-lg text-slate-500 transition hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-indigo-500">
+						{isMobileMenuOpen ? <svg viewBox="0 0 20 20" fill="none" className="h-5 w-5"><path d="m5 5 10 10M15 5 5 15" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" /></svg> : <svg viewBox="0 0 20 20" fill="none" className="h-5 w-5"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" /></svg>}
+					</button>
+					<button type="button" onClick={onLogout} className="inline-flex h-10 items-center gap-1.5 rounded-lg px-2 text-xs font-semibold text-slate-500 transition hover:bg-rose-50 hover:text-rose-600 focus-visible:outline-2 focus-visible:outline-indigo-500" aria-label="Sign out">
+						<svg viewBox="0 0 20 20" fill="none" className="h-4 w-4"><path d="M8 3.5H4.5a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1H8m4-3 3.5-3.5L12 6.5m3.5 3.5H7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+						<span>Sign out</span>
+					</button>
+				</div>
 			</div>
-			<nav className="-mx-1 mt-3 flex min-w-0 gap-1 overflow-x-auto pb-0.5 lg:hidden" aria-label="Main navigation">
-				<a href="#overview" className="shrink-0 rounded-lg px-3 py-2 text-xs font-medium text-slate-500 hover:bg-slate-50">Overview</a>
-				<a href="#products" aria-current="page" className="shrink-0 rounded-lg bg-indigo-50 px-3 py-2 text-xs font-semibold text-indigo-700">Products</a>
-				<a href="#categories" className="shrink-0 rounded-lg px-3 py-2 text-xs font-medium text-slate-500 hover:bg-slate-50">Categories</a>
-				<a href="#settings" className="shrink-0 rounded-lg px-3 py-2 text-xs font-medium text-slate-500 hover:bg-slate-50">Settings</a>
+			<nav id="mobile-navigation" className={`${isMobileMenuOpen ? 'grid' : 'hidden'} mt-3 grid-cols-2 gap-1 border-t border-slate-100 pt-3 lg:hidden`} aria-label="Main navigation">
+				<a href="#overview" onClick={closeMobileMenu} className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-500 transition hover:bg-slate-50 hover:text-slate-800">Overview</a>
+				<a href="#products" aria-current="page" onClick={closeMobileMenu} className="rounded-lg bg-indigo-50 px-3 py-2.5 text-sm font-semibold text-indigo-700">Products</a>
+				<a href="#categories" onClick={closeMobileMenu} className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-500 transition hover:bg-slate-50 hover:text-slate-800">Categories</a>
+				<a href="#settings" onClick={closeMobileMenu} className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-500 transition hover:bg-slate-50 hover:text-slate-800">Settings</a>
 			</nav>
 
 			<div className="mt-9 hidden lg:block">
